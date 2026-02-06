@@ -1,7 +1,18 @@
 @import "tailwindcss";
+@import "@nuxt/ui";
 
 @import "@fontsource/poppins";
 
+@import "material-symbols";
+
 body {
     font-family: 'Poppins', sans-serif;
+}
+
+@theme {
+    --color-primary: #1d4ed8;
+    --color-primary_dark: #101922;
+    /* Tailwind blue-700 as an example */
+    --color-secondary: #9333ea;
+    /* optional: purple-600 */
 }

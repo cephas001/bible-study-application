@@ -36,10 +36,9 @@ Verse Text
     `.trim();
 
     const result = await model.generateContent(prompt);
+    const response = result.response;
 
-    return {
-      result: result.response.text(),
-    };
+    return { result: response.text() };
   } catch (error) {
     console.error("Gemini API Error:", error);
     throw createError({
