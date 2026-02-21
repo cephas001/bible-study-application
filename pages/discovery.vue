@@ -1,35 +1,3 @@
-<script setup>
-// State for search input
-const searchQuery = ref("");
-
-// Mock Data for "Recent Finds" (You can replace this with real data later)
-const recentVerses = ref([
-  {
-    reference: "Philippians 4:6-7",
-    time: "2h ago",
-    text: '"Do not be anxious about anything, but in every situation, by prayer and petition..."',
-    tags: ["Anxiety", "Peace"],
-  },
-  {
-    reference: "Isaiah 41:10",
-    time: "Yesterday",
-    text: '"So do not fear, for I am with you; do not be dismayed, for I am your God..."',
-    tags: ["Strength", "Fear"],
-  },
-  {
-    reference: "Psalm 34:18",
-    time: "2 days ago",
-    text: '"The Lord is close to the brokenhearted and saves those who are crushed in spirit."',
-    tags: ["Comfort"],
-  },
-]);
-
-// Helper function for quick search chips
-const quickSearch = (term) => {
-  searchQuery.value = `I feel ${term.toLowerCase()}...`;
-};
-</script>
-
 <template>
   <div class="flex flex-col min-h-screen">
     <Header />
@@ -41,16 +9,10 @@ const quickSearch = (term) => {
         class="flex-1 flex flex-col items-center justify-center px-6 py-12 lg:py-24"
       >
         <div class="max-w-2xl w-full space-y-8">
-          <div class="text-center space-y-2">
-            <h2
-              class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl"
-            >
-              How are you feeling today?
-            </h2>
-            <p class="text-slate-500 dark:text-slate-400 text-md mt-4">
-              Speak from your heart, and find peace in the Word.
-            </p>
-          </div>
+          <TextBlock
+            titleText="How are you feeling today?"
+            paragraphText="Speak from your heart, and find peace in the Word."
+          />
 
           <div class="relative group">
             <div
@@ -224,6 +186,38 @@ const quickSearch = (term) => {
     </footer>
   </div>
 </template>
+
+<script setup>
+// State for search input
+const searchQuery = ref("");
+
+// Mock Data for "Recent Finds" (You can replace this with real data later)
+const recentVerses = ref([
+  {
+    reference: "Philippians 4:6-7",
+    time: "2h ago",
+    text: '"Do not be anxious about anything, but in every situation, by prayer and petition..."',
+    tags: ["Anxiety", "Peace"],
+  },
+  {
+    reference: "Isaiah 41:10",
+    time: "Yesterday",
+    text: '"So do not fear, for I am with you; do not be dismayed, for I am your God..."',
+    tags: ["Strength", "Fear"],
+  },
+  {
+    reference: "Psalm 34:18",
+    time: "2 days ago",
+    text: '"The Lord is close to the brokenhearted and saves those who are crushed in spirit."',
+    tags: ["Comfort"],
+  },
+]);
+
+// Helper function for quick search chips
+const quickSearch = (term) => {
+  searchQuery.value = `I feel ${term.toLowerCase()}...`;
+};
+</script>
 
 <style scoped>
 .material-symbols-outlined {
