@@ -35,25 +35,22 @@
           >
             <NuxtLink
               class="group flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all w-full sm:w-auto shadow-xl cursor-pointer"
-              to="/discovery"
+              to="/login"
             >
               <IconsGoogleIcon class="w-5 h-5" />
               Sign in with Google
             </NuxtLink>
-            <button
+            <NuxtLink
               class="flex items-center justify-center gap-2 text-white/80 hover:text-white px-8 py-4 font-semibold transition-all cursor-pointer"
-              @click="scrollToNextSection"
+              to="/discovery"
             >
               Explore Features
-              <span class="material-symbols-outlined"
-                ><IconsArrowDown class="text-xl"
-              /></span>
-            </button>
+            </NuxtLink>
           </div>
         </div>
       </section>
 
-      <section
+      <!-- <section
         class="py-24 bg-background-light dark:bg-background-dark"
         ref="targetSection"
       >
@@ -156,10 +153,10 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
 
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 

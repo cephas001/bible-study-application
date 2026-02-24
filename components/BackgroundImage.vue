@@ -5,7 +5,7 @@
     ></div>
     <img
       alt="Peaceful nature backdrop"
-      class="w-full h-full object-cover object-top"
+      class="w-full h-full object-cover object-left md:object-top"
       :src="
         !props.relativeImageSource
           ? imageSource

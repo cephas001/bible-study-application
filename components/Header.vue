@@ -1,11 +1,15 @@
 <template>
-  <header
-    class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-white/10"
-  >
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-0">
+    <div
+      class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between bg-black text-white"
+    >
       <div class="flex items-center gap-2">
-        <NuxtLink class="text-white text-xl font-bold tracking-tight" to="/"
-          >VerseFind</NuxtLink
+        <NuxtLink
+          class="text-white text-xl font-bold tracking-tight flex items-center gap-2"
+          to="/"
+        >
+          <IconsMenuBook />
+          VerseFind</NuxtLink
         >
       </div>
       <nav class="hidden md:flex items-center gap-10">
@@ -38,11 +42,8 @@
         </button>
       </div>
       <div class="flex items-center gap-4">
-        <button
-          class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors flex items-center"
-        >
-          <span class="material-symbols-outlined text-[24px]">settings</span>
-        </button>
+        <IconsSettings class="text-2xl" />
+
         <div
           class="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden"
         >
