@@ -16,7 +16,7 @@
           <!-- <FeatureBadge text="Scripture Search, Reimagined" /> -->
 
           <h1
-            class="text-white text-3xl md:text-5xl font-black leading-[1.1] tracking-tight mb-6 mt-5"
+            class="text-white text-3xl md:text-5xl font-black leading-[1.1] tracking-tight mb-6 mt-1"
           >
             Find Comfort in the Word,
             <span
@@ -34,17 +34,20 @@
             class="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <NuxtLink
+              class="group flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-md hover:bg-slate-50 transition-all w-full sm:w-auto shadow-xl cursor-pointer"
+              to="/discovery"
+              v-if="isAuthenticated"
+            >
+              <IconsArrowRight class="w-5 h-5" />
+              Dashboard
+            </NuxtLink>
+            <NuxtLink
               class="group flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-md hover:bg-slate-50 transition-all w-full sm:w-auto shadow-xl cursor-pointer"
               to="/login"
+              v-if="!isAuthenticated"
             >
               <IconsGoogleIcon class="w-5 h-5" />
               Sign in with Google
-            </NuxtLink>
-            <NuxtLink
-              class="flex items-center justify-center gap-2 text-white/80 hover:text-white px-8 py-4 font-semibold transition-all cursor-pointer text-md"
-              to="/discovery"
-            >
-              Explore Features
             </NuxtLink>
           </div>
         </div>
@@ -161,6 +164,11 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
+
+const authStore = useAuthStore();
+const { isAuthenticated } = storeToRefs(authStore);
+
 const targetSection = ref(null);
 
 const scrollToNextSection = () => {

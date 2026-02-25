@@ -29,7 +29,7 @@
           >FAQ</a
         >
       </nav>
-      <div class="flex items-center gap-4" v-if="!loggedIn">
+      <div class="flex items-center gap-4" v-if="!isAuthenticated">
         <button
           class="hidden sm:flex text-white text-sm font-medium hover:text-primary transition-colors cursor-pointer"
         >
@@ -42,16 +42,23 @@
           Get Started
         </NuxtLink>
       </div>
-      <div class="flex items-center gap-4" v-if="loggedIn">
-        <IconsSettings class="text-2xl" />
 
+      <NavBar
+        :class="[showNavBar ? 'visible' : 'hidden', 'absolute right-0 top-15']"
+      />
+
+      <div class="flex items-center gap-4" v-if="isAuthenticated">
+        <IconsSettings class="text-2xl" @click="showNavBar = !showNavBar" />
         <div
           class="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden"
         >
           <img
             alt="User Profile"
             class="h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&auto=format&fit=crop"
+            :src="
+              user.profilePicture ||
+              'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&auto=format&fit=crop'
+            "
           />
         </div>
       </div>
@@ -60,7 +67,13 @@
 </template>
 
 <script setup>
-const loggedIn = ref(false);
+import { storeToRefs } from "pinia";
+
+const authStore = useAuthStore();
+
+const { isAuthenticated, user } = storeToRefs(authStore);
+
+const showNavBar = ref(false);
 </script>
 
 <style scoped>

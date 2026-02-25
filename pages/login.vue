@@ -34,7 +34,7 @@
           <div class="flex gap-2">
             <div
               class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-2"
-              @click="$router.back()"
+              @click="navigateTo('/')"
             >
               <IconsArrowBack class="text-2xl" />
             </div>
@@ -84,7 +84,7 @@
               <div class="relative">
                 <input
                   v-model="email"
-                  class="form-input block w-full rounded-xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:border-primary focus:ring-primary py-3 px-4 text-base shadow-sm"
+                  class="form-input block w-full rounded-xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:border-primary focus:ring-primary py-3 px-4 text-base shadow-sm focus:bg-transparent"
                   id="email"
                   placeholder="name@example.com"
                   type="email"
@@ -144,6 +144,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+const authStore = useAuthStore();
 
 // Form state
 const email = ref("");
@@ -155,7 +158,41 @@ const handleLogin = () => {
   // Add your MongoDB/Google Auth logic here later
 };
 
-const loginWithGoogle = () => {
-  console.log("Initiating Google Login...");
+const loginWithGoogle = async () => {
+  try {
+    // Grab the auth instance we provided in the plugin
+    const { $auth } = useNuxtApp();
+    const provider = new GoogleAuthProvider();
+
+    // Trigger the Google popup
+    const result = await signInWithPopup($auth, provider);
+    const user = result.user;
+
+    // 2. Get the secure JWT (JSON Web Token) from Firebase
+    const idToken = await user.getIdToken();
+
+    // 3. Send the token to your new server route
+    await $fetch("/api/auth/session", {
+      method: "POST",
+      body: { token: idToken },
+    });
+
+    const userToSave = {
+      userId: user.uid,
+      username: user.displayName,
+      email: user.email,
+      profilePicture: user.photoURL,
+      verifiedEmail: user.emailVerified,
+    };
+
+    authStore.setUser(userToSave);
+
+    console.log("Success! Logged in as:", user.displayName);
+
+    // Redirect to your Discovery Hub dashboard
+    navigateTo("/discovery");
+  } catch (error) {
+    console.error("Error logging in:", error.message);
+  }
 };
 </script>
