@@ -4,16 +4,16 @@
 
     <main class="relative pt-16">
       <section
-        class="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+        class="relative min-h-[95vh] flex items-center justify-center overflow-hidden"
       >
         <BackgroundImage
-          imageSource="homepage_first_section_2.avif"
+          imageSource="homepage_first_section_second.jpg"
           altText="Serene nature background with a person reading a book"
           :relativeImageSource="true"
         />
 
         <div class="relative z-20 max-w-4xl mx-auto px-6 text-center">
-          <FeatureBadge />
+          <!-- <FeatureBadge text="Scripture Search, Reimagined" /> -->
 
           <h1
             class="text-white text-3xl md:text-5xl font-black leading-[1.1] tracking-tight mb-6 mt-5"

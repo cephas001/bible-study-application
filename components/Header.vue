@@ -29,19 +29,20 @@
           >FAQ</a
         >
       </nav>
-      <div class="flex items-center gap-4" v-if="false">
+      <div class="flex items-center gap-4" v-if="!loggedIn">
         <button
           class="hidden sm:flex text-white text-sm font-medium hover:text-primary transition-colors cursor-pointer"
         >
           Sign In
         </button>
-        <button
-          class="bg-primary hover:bg-primary/90 text-white text-sm font-bold px-5 py-2 rounded-xl transition-all shadow-lg shadow-primary/20 cursor-pointer"
+        <NuxtLink
+          class="bg-primary hover:bg-primary/90 text-white text-sm font-bold px-5 py-2 rounded-xl transition-all shadow-lg shadow-primary/20 cursor-pointer tracking-wide"
+          to="/login"
         >
           Get Started
-        </button>
+        </NuxtLink>
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4" v-if="loggedIn">
         <IconsSettings class="text-2xl" />
 
         <div
@@ -57,6 +58,10 @@
     </div>
   </header>
 </template>
+
+<script setup>
+const loggedIn = ref(false);
+</script>
 
 <style scoped>
 .glass-nav {

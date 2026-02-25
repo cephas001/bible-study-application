@@ -1,23 +1,5 @@
-<script setup>
-import { ref } from "vue";
-
-// Form state
-const email = ref("");
-const password = ref("");
-
-// Handle form submission
-const handleLogin = () => {
-  console.log("Logging in with:", email.value, password.value);
-  // Add your MongoDB/Google Auth logic here later
-};
-
-const loginWithGoogle = () => {
-  console.log("Initiating Google Login...");
-};
-</script>
-
 <template>
-  <div class="flex h-screen w-full overflow-hidden">
+  <section class="flex min-h-[90vh] w-full overflow-hidden">
     <div class="hidden lg:flex w-1/2 relative">
       <div
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -28,7 +10,7 @@ const loginWithGoogle = () => {
       >
         <div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+          class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"
         ></div>
       </div>
 
@@ -45,17 +27,20 @@ const loginWithGoogle = () => {
     </div>
 
     <div
-      class="w-full lg:w-1/2 flex items-center justify-center py-10 px-6 bg-background-light dark:bg-background-dark overflow-y-auto"
+      class="w-full lg:w-1/2 flex items-center justify-center py-12 px-6 bg-background-light dark:bg-background-dark overflow-y-auto"
     >
       <div class="w-full max-w-120 flex flex-col gap-8">
         <div class="flex flex-col gap-2 items-center text-center">
           <div
             class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-2"
+            @click="$router.back()"
           >
-            <IconsMenuBook class="text-2xl" />
+            <IconsArrowBack class="text-2xl" />
           </div>
-          <h1 class="text-black text-3xl font-bold mb-2 tracking-tight">
-            VerseFind
+          <h1
+            class="text-black text-3xl font-bold mb-2 tracking-tight flex gap-2 items-center mt-2"
+          >
+            <IconsMenuBook /> VerseFind
           </h1>
           <p class="text-black text-base font-normal">
             Welcome back! Please enter your details.
@@ -136,14 +121,33 @@ const loginWithGoogle = () => {
         <div class="text-center">
           <p class="text-sm text-slate-500 dark:text-slate-400">
             Don't have an account?
-            <a
+            <NuxtLink
+              to="/signup"
               class="font-bold text-primary hover:text-blue-600 dark:hover:text-blue-400 hover:underline cursor-pointer"
             >
               Sign up for free
-            </a>
+            </NuxtLink>
           </p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+// Form state
+const email = ref("");
+const password = ref("");
+
+// Handle form submission
+const handleLogin = () => {
+  console.log("Logging in with:", email.value, password.value);
+  // Add your MongoDB/Google Auth logic here later
+};
+
+const loginWithGoogle = () => {
+  console.log("Initiating Google Login...");
+};
+</script>
