@@ -31,16 +31,24 @@
     >
       <div class="w-full max-w-120 flex flex-col gap-8">
         <div class="flex flex-col gap-2 items-center text-center">
-          <div
-            class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-2"
-            @click="$router.back()"
-          >
-            <IconsArrowBack class="text-2xl" />
+          <div class="flex gap-2">
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-2"
+              @click="$router.back()"
+            >
+              <IconsArrowBack class="text-2xl" />
+            </div>
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-2"
+              @click="$router.back()"
+            >
+              <IconsMenuBook class="text-2xl" />
+            </div>
           </div>
           <h1
             class="text-black text-3xl font-bold mb-2 tracking-tight flex gap-2 items-center mt-2"
           >
-            <IconsMenuBook /> VerseFind
+            VerseFind
           </h1>
           <p class="text-black text-base font-normal">
             Welcome back! Please enter your details.

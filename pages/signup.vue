@@ -34,7 +34,7 @@ const registerWithGoogle = () => {
 
     <main class="flex-1 flex flex-col lg:flex-row h-full pt-20">
       <div
-        class="max-w-md px-8 pt-4 pb-10 bg-linear-to-t from-blue-900/50 to-transparent lg:bg-linear-to-r lg:from-transparent lg:to-blue-900/50"
+        class="max-w-md px-8 pt-6 pb-10 bg-linear-to-t from-blue-900/50 to-transparent lg:bg-linear-to-r lg:from-transparent lg:to-blue-900/50"
       >
         <h1
           class="text-2xl lg:text-4xl font-bold text-black mb-4 leading-tight"
