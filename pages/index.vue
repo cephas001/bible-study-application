@@ -16,7 +16,7 @@
           <FeatureBadge />
 
           <h1
-            class="text-white text-5xl md:text-7xl font-black leading-[1.1] tracking-tight mb-8 mt-5"
+            class="text-white text-3xl md:text-5xl font-black leading-[1.1] tracking-tight mb-6 mt-5"
           >
             Find Comfort in the Word,
             <span
@@ -25,7 +25,7 @@
             >
           </h1>
           <p
-            class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light"
+            class="text-slate-300 text-md md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-light"
           >
             Experience a deeper connection with scripture through AI-powered
             insights that understand your emotions and current life context.
@@ -34,14 +34,14 @@
             class="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <NuxtLink
-              class="group flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all w-full sm:w-auto shadow-xl cursor-pointer"
+              class="group flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-md hover:bg-slate-50 transition-all w-full sm:w-auto shadow-xl cursor-pointer"
               to="/login"
             >
               <IconsGoogleIcon class="w-5 h-5" />
               Sign in with Google
             </NuxtLink>
             <NuxtLink
-              class="flex items-center justify-center gap-2 text-white/80 hover:text-white px-8 py-4 font-semibold transition-all cursor-pointer"
+              class="flex items-center justify-center gap-2 text-white/80 hover:text-white px-8 py-4 font-semibold transition-all cursor-pointer text-md"
               to="/discovery"
             >
               Explore Features
