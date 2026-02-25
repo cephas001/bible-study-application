@@ -4,7 +4,7 @@
 
     <main class="relative pt-16">
       <section
-        class="relative min-h-[95vh] flex items-center justify-center overflow-hidden"
+        class="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
       >
         <BackgroundImage
           imageSource="homepage_first_section_second.jpg"
