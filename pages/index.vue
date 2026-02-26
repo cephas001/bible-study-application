@@ -16,7 +16,7 @@
           <!-- <FeatureBadge text="Scripture Search, Reimagined" /> -->
 
           <h1
-            class="text-white text-3xl md:text-5xl font-black leading-[1.1] tracking-tight mb-6 mt-1"
+            class="text-white text-3xl md:text-5xl font-black leading-[1.1] tracking-tight mb-6 mt-3"
           >
             Find Comfort in the Word,
             <span
@@ -41,13 +41,21 @@
               <IconsArrowRight class="w-5 h-5" />
               Dashboard
             </NuxtLink>
+            <button
+              class="group flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-md hover:bg-slate-50 transition-all w-full sm:w-auto shadow-xl cursor-pointer"
+              v-if="!isAuthenticated"
+              @click="authStore.loginWithGoogle"
+            >
+              <IconsGoogleIcon class="w-5 h-5" />
+              Sign in with Google
+            </button>
             <NuxtLink
               class="group flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold text-md hover:bg-slate-50 transition-all w-full sm:w-auto shadow-xl cursor-pointer"
               to="/login"
               v-if="!isAuthenticated"
             >
-              <IconsGoogleIcon class="w-5 h-5" />
-              Sign in with Google
+              <IconsMenuBook class="w-5 h-5" />
+              Login to Explore
             </NuxtLink>
           </div>
         </div>

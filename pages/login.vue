@@ -57,7 +57,7 @@
 
         <div class="flex flex-col gap-4">
           <button
-            @click="loginWithGoogle"
+            @click="authStore.loginWithGoogle"
             class="group flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white p-3.5 transition-all hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             <IconsGoogleIcon />
@@ -77,6 +77,11 @@
           </div>
 
           <form @submit.prevent="handleLogin" class="flex flex-col gap-4">
+            <span
+              class="text-red-500 text-center text-sm"
+              v-if="errorMessage"
+              >{{ errorMessage }}</span
+            >
             <div class="flex flex-col gap-1.5">
               <label class="text-sm font-bold text-black" for="email"
                 >Email</label
@@ -90,6 +95,11 @@
                   type="email"
                   required
                 />
+                <span
+                  class="mt-3 ml-2 text-red-500 text-sm"
+                  v-if="currentErrorInput == 'email' && inputError"
+                  >{{ inputError }}</span
+                >
               </div>
             </div>
 
@@ -106,6 +116,11 @@
                   type="password"
                   required
                 />
+                <span
+                  class="mt-3 text-red-500 text-sm"
+                  v-if="currentErrorInput == 'password' && inputError"
+                  >{{ inputError }}</span
+                >
               </div>
             </div>
 
@@ -144,55 +159,52 @@
 
 <script setup>
 import { ref } from "vue";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const authStore = useAuthStore();
+const errorMessage = ref("");
 
 // Form state
 const email = ref("");
 const password = ref("");
 
+// Validation
+// const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const inputError = ref("");
+const currentErrorInput = ref("");
+
 // Handle form submission
-const handleLogin = () => {
+const handleLogin = async (e) => {
+  e.preventDefault();
+
+  if (!email.value || !password.value) {
+    alert("Please enter both email and password.");
+    return;
+  }
+
+  if (!emailRegex.test(email.value)) {
+    inputError.value = "Please enter a valid email address.";
+    currentErrorInput.value = "email";
+    return;
+  }
+
+  // if (!passwordRegex.test(password.value)) {
+  //   inputError.value =
+  //     "Password must be at least 8 characters long and include both letters and numbers.";
+  //   currentErrorInput.value = "password";
+  //   return;
+  // }
+
+  inputError.value = "";
+  currentErrorInput.value = "";
+
   console.log("Logging in with:", email.value, password.value);
-  // Add your MongoDB/Google Auth logic here later
-};
 
-const loginWithGoogle = async () => {
   try {
-    // Grab the auth instance we provided in the plugin
-    const { $auth } = useNuxtApp();
-    const provider = new GoogleAuthProvider();
-
-    // Trigger the Google popup
-    const result = await signInWithPopup($auth, provider);
-    const user = result.user;
-
-    // 2. Get the secure JWT (JSON Web Token) from Firebase
-    const idToken = await user.getIdToken();
-
-    // 3. Send the token to your new server route
-    await $fetch("/api/auth/session", {
-      method: "POST",
-      body: { token: idToken },
-    });
-
-    const userToSave = {
-      userId: user.uid,
-      username: user.displayName,
-      email: user.email,
-      profilePicture: user.photoURL,
-      verifiedEmail: user.emailVerified,
-    };
-
-    authStore.setUser(userToSave);
-
-    console.log("Success! Logged in as:", user.displayName);
-
-    // Redirect to your Discovery Hub dashboard
-    navigateTo("/discovery");
+    await authStore.loginWithEmail(email.value, password.value);
   } catch (error) {
-    console.error("Error logging in:", error.message);
+    console.error("Login failed:", error);
+    errorMessage.value = error;
   }
 };
 </script>
