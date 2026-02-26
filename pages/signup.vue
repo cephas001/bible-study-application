@@ -139,10 +139,9 @@ const registerWithGoogle = () => {
 
             <label class="flex items-start gap-3 mt-2 cursor-pointer group">
               <div class="relative flex items-center">
-                <input
+                <UCheckbox
                   v-model="agreeTerms"
-                  class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 bg-white checked:border-primary checked:bg-primary transition-all"
-                  type="checkbox"
+                  class="peer cursor-pointer appearance-none rounded bg-white transition-all"
                 />
               </div>
               <span class="text-sm text-slate-500 select-none">

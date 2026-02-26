@@ -25,7 +25,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     // Private keys go here (Server only)
-    geminiApiKey: process.env.GEMINI_API_KEY,
+    geminiApiKey: "",
 
     public: {
       // Public keys go here (Client & Server)
